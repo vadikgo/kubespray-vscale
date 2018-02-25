@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import requests
-import json
 import sys
 import time
 import os
@@ -18,7 +17,7 @@ if not os.path.exists("kubespray/.git"):
     os.system("git clone https://github.com/kubernetes-incubator/kubespray.git")
 
 print("Copy inventory...")
-os.system("cp -r inventory/vscale kubespray/inventory/")
+os.system("cp -rf inventory/vscale kubespray/inventory/")
 
 def get_scalet(name):
     for scalet in requests.get('https://api.vscale.io/v1/scalets', headers=headers).json():
