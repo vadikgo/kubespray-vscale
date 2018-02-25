@@ -29,5 +29,5 @@ done
 # get servers ip and set it in hosts.ini
 for i in 0 1 2; do
   ip=$(curl -s 'https://api.vscale.io/v1/scalets' -H "X-Token: ${TOKEN}" | python3 -c "import sys, json; print(json.load(sys.stdin)[${i}]['public_address']['address'])")
-  echo "sed -i -e 's/node${i}_ip/${ip}/' kubespray/inventory/vscale/hosts.ini" | sh
+  echo "sed -i -e 's/node$(($i+1))_ip/${ip}/' kubespray/inventory/vscale/hosts.ini" | sh
 done
