@@ -31,13 +31,12 @@ for host in ['node1', 'node2', 'node3']:
         requests.post("https://api.vscale.io/v1/scalets", headers=headers,
                       json={"make_from": "centos_7_64_001_master",
                             "rplan": "large", "do_start": True,
-                            "name": host, "keys":[18823],
+                            "name": host, "hostname": host, "keys":[18823],
                             "location": "spb0"})
     while (get_scalet(host)['status'] != 'started'):
         time.sleep(1)
-    with open("kubespray/inventory/vscale/hosts.ini") as f:
+    with open("kubespray/inventory/vscale/hosts.ini", "r+") as f:
         new_ip = f.read().replace('{}_ip'.format(host), get_scalet(host)['public_address']['address'])
-        f.close()
-    with open("kubespray/inventory/vscale/hosts.ini", "w") as f:
+        f.seek(0)
         f.write(new_ip)
         f.close()

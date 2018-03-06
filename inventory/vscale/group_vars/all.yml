@@ -1,8 +1,0 @@
-bootstrap_os: centos
-docker_storage_options: -s overlay2
-docker_version: '17.12'
-
-# Uncomment this if you have more than 3 nameservers, then we'll only use the first 3.
-docker_dns_servers_strict: false
-
-helm_version: "v2.8.1"
