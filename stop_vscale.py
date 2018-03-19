@@ -20,5 +20,6 @@ def get_scalet(name):
 for host in ['node1', 'node2', 'node3']:
     try:
         requests.delete("https://api.vscale.io/v1/scalets/{}".format(get_scalet(host)['ctid']), headers=headers)
+        print ("Host {} deleted.".format(host))
     except KeyError:
         pass
